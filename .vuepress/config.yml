@@ -107,6 +107,5 @@ themeConfig:
       repo: vue-press-blog
       clientId: 529e90f9d56b271223a3
       clientSecret: 211db8af09be4e0e068e3007282114dcca906d94
-
 markdown:
   lineNumbers: true
