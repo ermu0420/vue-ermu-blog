@@ -1,5 +1,5 @@
 <template>
-  <article>
+  <article class="article-home">
     <div class="item-head">
       <div class="item-head-content">
         <div class="item-head-content-title">{{ $page.frontmatter.title }}</div>
@@ -7,7 +7,7 @@
     </div>
 
     <ul class="archives-list">
-      <each v-for="(year, i) in postYear">
+      <div v-for="(year, i) in postYear">
         <h3>{{year}}</h3>
         <li v-for="(item, i) in getPosts(year)" :key="item.title">
           <span>{{formatDate(item.frontmatter.createDate)}}</span>
@@ -16,7 +16,7 @@
               :item="{link:item.path,text:item.title}"
           />
         </li>
-      </each>
+      </div>
     </ul>
   </article>
 </template>
@@ -32,8 +32,7 @@
         postYear: undefined,
       }
     },
-    computed: {
-    },
+    computed: {},
     methods: {
       formatDate(date) {
         return (new Date(date).getMonth() + 1) + "-" + new Date(date).getDate()
@@ -51,13 +50,13 @@
           this.postsGroupYear[year].push(value)
         });
       },
-      getPosts(year){
+      getPosts(year) {
         return this.postsGroupYear[year];
       }
     },
     mounted() {
       this.groupPosts();
-      this.postYear = Object.keys(this.postsGroupYear).sort((prev, next) =>{
+      this.postYear = Object.keys(this.postsGroupYear).sort((prev, next) => {
         return (prev - next) > 0 ? -1 : 1;
       })
     }
@@ -67,6 +66,10 @@
 <style lang="stylus">
   @import '../styles/style.styl'
   $fontColor = #fff
+  .article-home
+    margin-bottom $footerHeight
+    padding-bottom 10px
+
   .item-head
     background-color $accentColor
     color $fontColor
@@ -94,10 +97,10 @@
       padding: 20px 0 10px
 
     li
-      width: 50%;
-      line-height: 1.5;
-      float: left;
-      margin: 10px 0;
+      width 50%
+      line-height 1.5
+      margin 10px 0
+      display inline-block
 
   @media (max-width: $MQMobile)
     .item-head
@@ -108,4 +111,20 @@
 
         .item-head-content-title
           font-size 2rem
+
+    .archives-list
+      max-width $MQMobile
+      padding 0 2rem 0
+      margin 0px auto
+
+      h3
+        clear: both
+        margin: 0
+        margin-left -20px
+        padding: 20px 0 10px
+
+      li
+        width 100%
+        line-height: 1.5;
+        margin: 10px 0;
 </style>

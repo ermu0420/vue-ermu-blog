@@ -66,7 +66,7 @@
       console.log(posts)
     },
     methods: {
-      formatDate (date) {
+      formatDate(date) {
         return new Date(date).toLocaleDateString()
       }
     }
@@ -146,4 +146,17 @@
 
         .home-head-content-title
           font-size 2rem
+
+    .home-row
+      .home-row-left
+        width 100%
+
+        .post-list-title
+          font-size 1rem
+
+        .post-list-description
+          font-size 16px
+
+        .post-list-meta
+          font-size 16px
 </style>
