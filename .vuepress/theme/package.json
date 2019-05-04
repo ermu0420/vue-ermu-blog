@@ -1,0 +1,28 @@
+{
+  "name": "vuepress-theme-ermu",
+  "version": "1.0.0",
+  "description": "vuepress博客主题",
+  "private": false,
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ermu0420/vuepress-theme-ermu.git"
+  },
+  "keywords": [
+    "vuepress","theme","blog"
+  ],
+  "author": "ermu <xsl0420@126.com>",
+  "bugs": {
+    "url": "https://github.com/ermu0420/vuepress-theme-ermu/issues"
+  },
+  "homepage": "https://github.com/ermu0420/vuepress-theme-ermu#readme",
+  "dependencies": {
+    "@vssue/api-github-v3": "^0.9.0",
+    "font-awesome": "4.7.0",
+    "vssue": "^0.9.1"
+  },
+  "devDependencies": {
+    "vuepress": "^1.0.0-alpha.47"
+  }
+}

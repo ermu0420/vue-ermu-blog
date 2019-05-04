@@ -1,0 +1,112 @@
+title: 二木
+description: 留下脚印的地方
+head:
+  - - link
+    - rel: icon
+      href: /favicon.ico
+# 指定 vuepress build 的输出目录。
+dest: .vuepress/dist
+host: 127.0.0.1
+port: 8080
+theme: ermu
+# 主题配置
+themeConfig:
+  logo: /favicon.ico
+  # 导航栏
+  nav:
+    - text: Server
+      items:
+      - text: Java
+        link: /server/java/
+    - text: Web
+      items:
+        - text: JavaScript
+          link: /web/javascript/
+        - text: Vue
+          link: /web/vue/
+        - text: React
+          link: /web/react/
+    - text: Spring
+      items: 
+        - text: Spring
+          link: /spring/
+        - text: Spring-boot
+          link: /spring-boot/
+        - text: Spring-cloud
+          link: /spring-cloud/
+    - text: Tool
+      link: /tool/
+#      items:
+#        - text: Git
+#          link: /tool/git/
+#        - text: Docker
+#          link: /tool/docker/
+#        - text: Maven
+#          link: /tool/maven/
+#        - text: Jekins
+#            link: /tool/jekins/
+    - text: Archives
+      link: /archives/
+#    - text: About
+#      link: /git/
+  # 侧边导航栏
+  sidebar:
+    "/tool/":
+      - title: MarkDown
+        collapsable: false
+        children:
+          - 2019-03-10-markdown
+      - title: Jenkins
+        collapsable: false
+        children:
+          - 2019-03-12-Jenkins
+      - title: Gitlib
+        collapsable: false
+        children:
+          - 2019-03-12-GitLib
+      - title: Redis
+        collapsable: true
+        children:
+          - redis/2019-04-01-01-Redis-install
+          - redis/2019-04-01-02-Redis-String
+          - redis/2019-04-01-03-Redis-Hash
+          - redis/2019-04-01-04-Redis-List
+          - redis/2019-04-01-05-Redis-Set
+          - redis/2019-04-01-06-Redis-SortSet
+          - redis/2019-04-01-07-Redis-subscribe
+  lastUpdated: true
+  # 页底配置
+  footer:
+    copyright: MIT Licensed | Copyright © 2019-present Ermu
+    weibo: https://weibo.com/ermu0420
+    zhihu: https://www.zhihu.com/people/ermu0420
+    csdn: https://me.csdn.net/qq_22420441
+    github: https://github.com/ermu0420
+    filing: 蜀ICP备19008309号-1
+  home:
+    title: 留下梦想的脚印
+    labels:
+      - link: /docker/
+        text: Docker
+
+      - link: /functional/
+        text: Functional
+
+      - link: /reactive/
+        text: Reactive
+  # 启用Vssue
+  Vssue: true
+  gitalk:
+    dev:
+      owner: ermu0420
+      repo: vue-press-blog
+      clientId: 3593cbaa81b50f2472df
+      clientSecret: 1647121e339f77581c7cdb698b20187efde8fba3
+    prod:
+      owner: ermu0420
+      repo: vue-press-blog
+      clientId: 529e90f9d56b271223a3
+      clientSecret: 211db8af09be4e0e068e3007282114dcca906d94
+
+markdown:
+  lineNumbers: true

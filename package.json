@@ -1,0 +1,29 @@
+{
+  "name": "vuepress-ermu-blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vuepress dev .",
+    "build": "vuepress build ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ermu0420/vuepress-ermu-blog.git"
+  },
+  "keywords": [
+    "vuepress",
+    "blog"
+  ],
+  "author": "ermu",
+  "bugs": {
+    "url": "https://github.com/ermu0420/vuepress-ermu-blog/issues"
+  },
+  "homepage": "https://github.com/ermu0420/vuepress-ermu-blog#readme",
+  "dependencies": {
+    "vuepress-theme-ermu": "^1.0.1"
+  },
+  "devDependencies": {
+    "vuepress": "^1.0.0-alpha.47"
+  }
+}
