@@ -8,7 +8,7 @@ head:
 dest: .vuepress/dist
 host: 127.0.0.1
 port: 8080
-theme: ermu
+#theme: ermu
 # 主题配置
 themeConfig:
   logo: /favicon.ico

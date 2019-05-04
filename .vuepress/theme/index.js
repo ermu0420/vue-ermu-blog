@@ -1,4 +1,5 @@
 const path = require('path')
+const fs = require('fs');
 
 // Theme API.
 module.exports = (options, ctx) => ({
@@ -39,5 +40,5 @@ module.exports = (options, ctx) => ({
         '/zh/': '警告'
       }
     }]
-  ]
+  ],
 })

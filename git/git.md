@@ -2,6 +2,7 @@
 sidebar: auto
 category: git
 status: save
+description: git内容
 createDate: 2019-03-01
 ---
 # Git 
@@ -9,7 +10,7 @@ createDate: 2019-03-01
 ## Git 与 SVN 对比
 - GIT:分布式（Distributed），变化的保存全部（copy），当前未变化的文件指向上一个版本
 - SVN:集中式（centralized ），提交文件（修改），纪录的是变化
-
+<!-- more -->
 ![](./img/diff-git-svn.png)
 
 ## Git 逻辑状态

@@ -35,6 +35,8 @@
 
     <ItemIndex v-else-if="$page.frontmatter.itemIndex"/>
 
+    <Archives v-else-if="$page.frontmatter.archives"/>
+
     <Page
       v-else
       :sidebar-items="sidebarItems"
@@ -58,10 +60,11 @@ import Page from '@theme/components/Page.vue'
 import Sidebar from '@theme/components/Sidebar.vue'
 import Footer from '@theme/components/Footer.vue'
 import ItemIndex from '@theme/components/ItemIndex.vue'
+import Archives from "@theme/components/Archives";
 import { resolveSidebarItems } from '../util'
 
 export default {
-  components: { Home, Page, Sidebar, Navbar,Footer,ItemIndex },
+  components: {Archives, Home, Page, Sidebar, Navbar,Footer,ItemIndex },
 
   data () {
     return {

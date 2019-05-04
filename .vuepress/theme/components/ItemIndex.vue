@@ -8,7 +8,7 @@
 
         <div class="time-line">
             <ul class="posts-list">
-                <li class="posts-list-item"  v-for="(item, i) in posts" :key="item.title" v-if="item.frontmatter.status === 'push'">
+                <li class="posts-list-item"  v-for="(item, i) in posts" :key="item.title">
                     <div class="posts-content">
                         <span class="posts-list-meta">{{ item.frontmatter.createDate.substr(0,10) }}</span>
                         <NavLink

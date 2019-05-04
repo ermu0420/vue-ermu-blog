@@ -20,6 +20,7 @@
   "dependencies": {
     "@vssue/api-github-v3": "^0.9.0",
     "font-awesome": "4.7.0",
+    "element-ui": "^2.5.0",
     "vssue": "^0.9.1"
   },
   "devDependencies": {
