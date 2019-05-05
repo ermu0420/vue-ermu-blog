@@ -38,7 +38,7 @@
                return this.$site.pages.filter(value => {
                     return value.frontmatter.category === this.$page.frontmatter.category && !value.frontmatter.itemIndex;
                 }).sort((prev, next) =>{
-                   return prev.frontmatter.createDate - next.frontmatter.createDate > 0 ? -1 : 1;
+                   return new Date(prev.frontmatter.createDate).getTime() - new Date(next.frontmatter.createDate).getTime() > 0 ? -1 : 1;
                });
             }
         },
