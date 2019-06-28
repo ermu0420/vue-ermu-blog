@@ -3,7 +3,6 @@ createDate: 2019-01-20
 category: java
 title: 多线程（三）：ReentrantLock NonfairSync FairSync
 status: push
-sidebar: auto
 ---
 ## 结构
 ![](./img/20190115220526789.png)

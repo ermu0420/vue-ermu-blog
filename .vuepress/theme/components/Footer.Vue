@@ -51,7 +51,6 @@
     .footer
         text-align center
         color lighten($textColor, 25%)
-        position fixed
         height $footerHeight
         width 100%
         bottom 0

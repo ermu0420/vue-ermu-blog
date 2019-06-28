@@ -3,7 +3,6 @@ createDate: 2019-01-15
 category: java
 title: 多线程（一）：synchronized 和 volatile
 status: push
-sidebar: auto
 ---
 ## synchronized ：实现同步
 ### 锁机制

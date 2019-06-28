@@ -33,11 +33,14 @@
         </ul>
       </div>
     </div>
+
+    <Footer v-if="$site.themeConfig.footer" />
   </div>
 </template>
 
 <script>
   import NavLink from '@theme/components/NavLink.vue'
+  import Footer from '@theme/components/Footer.vue'
 
   export default {
     components: {NavLink},
@@ -63,7 +66,6 @@
       }).sort((prev, next) => {
         return new Date(prev.frontmatter.createDate).getTime() - new Date(next.frontmatter.createDate).getTime() > 0 ? -1 : 1;
       });
-      console.log(posts)
     },
     methods: {
       formatDate(date) {
@@ -75,8 +77,6 @@
 
 <style lang="stylus">
   @import '../styles/style.styl'
-  .home
-    margin-bottom $footerHeight
 
   .home-head
     background-color $accentColor

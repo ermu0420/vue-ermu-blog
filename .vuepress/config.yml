@@ -12,12 +12,11 @@ port: 8080
 # 主题配置
 themeConfig:
   logo: /favicon.ico
+  sidebarDepth: 2
   # 导航栏
   nav:
-    - text: Server
-      items:
-      - text: Java
-        link: /server/java/
+    - text: Java
+      link: /java/
     - text: Web
       items:
         - text: JavaScript
@@ -36,22 +35,29 @@ themeConfig:
           link: /spring-cloud/
     - text: Tool
       link: /tool/
-#      items:
-#        - text: Git
-#          link: /tool/git/
-#        - text: Docker
-#          link: /tool/docker/
-#        - text: Maven
-#          link: /tool/maven/
-#        - text: Jekins
-#            link: /tool/jekins/
     - text: Archives
       link: /archives/
 #    - text: About
 #      link: /git/
   # 侧边导航栏
   sidebar:
-    "/tool/":
+    '/java/':
+      - title: 地基
+        children:
+          - base/2018-11-13-String常用方法和源码
+          - base/2018-11-14-String StringBuilder StringBuffer
+      # - title: 常用的工具类
+      #   collapsable: false
+      #   children:
+      - title: 并发编程之美
+        children:
+          - thread/2019-01-15-synchronized ,volatile
+          - thread/2019-01-16-AbstractQueuedSynchronizer
+          - thread/2019-01-20-ReentrantLock
+      # - title: 性能监控调优
+      #   collapsable: false
+      #   children:
+    '/tool/':
       - title: MarkDown
         collapsable: false
         children:
@@ -107,5 +113,3 @@ themeConfig:
       repo: vue-press-blog
       clientId: 529e90f9d56b271223a3
       clientSecret: 211db8af09be4e0e068e3007282114dcca906d94
-markdown:
-  lineNumbers: true

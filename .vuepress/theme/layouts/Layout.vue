@@ -29,8 +29,6 @@
       />
     </Sidebar>
 
-    <Footer v-if="$site.themeConfig.footer" />
-
     <Home v-if="$page.frontmatter.home"/>
 
     <ItemIndex v-else-if="$page.frontmatter.itemIndex"/>
@@ -50,6 +48,8 @@
         slot="bottom"
       />
     </Page>
+
+    <Footer v-if="$site.themeConfig.footer && $page.frontmatter.home" />
   </div>
 </template>
 

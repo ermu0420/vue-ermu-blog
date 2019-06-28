@@ -7620,10 +7620,10 @@ vuepress-plugin-container@^2.0.0:
   dependencies:
     markdown-it-container "^2.0.0"
 
-vuepress-theme-ermu@^1.0.0:
+vuepress-theme-ermu@^1.0.1:
   version "1.0.1"
-  resolved "https://registry.yarnpkg.com/vuepress-theme-ermu/-/vuepress-theme-ermu-1.0.1.tgz#1afeebcea82e4ebc5a2acc4b1c03747bb266a578"
-  integrity sha512-Ue7SeEKJF9Xi/CxHqNgAVH57PWawD2Gz9+flypqll0BG3kxAPWB6IXen8uMOt7QZAOrJqZOWcAy1/dn3a7lGsA==
+  resolved "http://npm-registry.cloud.thunisoft.com/repository/npm-public/vuepress-theme-ermu/-/vuepress-theme-ermu-1.0.1.tgz#1afeebcea82e4ebc5a2acc4b1c03747bb266a578"
+  integrity sha1-Gv7rzqguTrxaKsxLHAN0e7JmpXg=
   dependencies:
     "@vssue/api-github-v3" "^0.9.0"
     font-awesome "4.7.0"

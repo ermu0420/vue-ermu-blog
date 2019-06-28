@@ -3,7 +3,6 @@ createDate: 2019-01-16
 category: java
 title: 多线程（二）：AbstractQueuedSynchronizer
 status: push
-sidebar: auto
 ---
 AbstractQueuedSynchronizer(AQS) -- 为实现依赖于先进先出 (FIFO) 
 

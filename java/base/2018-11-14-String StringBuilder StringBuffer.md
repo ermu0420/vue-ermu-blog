@@ -3,7 +3,6 @@ createDate: 2018-11-14
 category: java
 title: String（二）： String,StringBuffer与StringBuilder的区别
 status: push
-sidebar: auto
 ---
 
 ## String

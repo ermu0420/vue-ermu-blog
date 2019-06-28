@@ -2,7 +2,10 @@
   <main class="page">
     <slot name="top"/>
 
-    <Content/>
+    <div v-if="$page.frontmatter.pageIndex">
+      1111
+    </div>
+    <Content v-else/>
 
     <footer class="page-edit">
       <div
