@@ -33,8 +33,8 @@ themeConfig:
           link: /spring-boot/
         - text: Spring-cloud
           link: /spring-cloud/
-    - text: Tool
-      link: /tool/
+    - text: Other
+      link: /other/
     - text: Archives
       link: /archives/
 #    - text: About
@@ -57,7 +57,34 @@ themeConfig:
       # - title: 性能监控调优
       #   collapsable: false
       #   children:
-    '/tool/':
+
+    '/web/javascript/':
+      - title: javascript
+        children:
+    '/web/vue/':
+      - title: Vue
+        children:
+    '/web/react/':
+      - title: React
+        children:
+    '/spring/':
+      - title: Spring
+        children:
+          - 2019-05-05-spring相关概念
+    '/spring-boot/':
+      - title: Springboot
+        children:
+    '/spring-cloud/':
+      - title: SpringCloud
+        children:
+          - 2019-03-15-spring-cloud-eureka
+    '/docker/':
+      - title: Docker
+        children:
+          - 2019-03-12-Docker
+          - 2019-03-16-maven-docker
+          - 2019-03-20-GitLib+Jenkins+Docker
+    '/other/':
       - title: MarkDown
         collapsable: false
         children:
@@ -113,3 +140,5 @@ themeConfig:
       repo: vue-press-blog
       clientId: 529e90f9d56b271223a3
       clientSecret: 211db8af09be4e0e068e3007282114dcca906d94
+  plugins:
+    - '@vuepress/back-to-top'

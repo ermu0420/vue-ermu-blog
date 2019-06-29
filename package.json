@@ -24,6 +24,7 @@
     "vuepress-theme-ermu": "^1.0.1"
   },
   "devDependencies": {
-    "vuepress": "^1.0.0-alpha.47"
+    "@vuepress/plugin-back-to-top": "^1.0.0-rc.1",
+    "vuepress": "^1.0.2"
   }
 }

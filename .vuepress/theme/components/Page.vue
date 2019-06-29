@@ -1,146 +1,128 @@
 <template>
   <main class="page">
-    <slot name="top"/>
+    <slot name="top" />
 
     <div v-if="$page.frontmatter.pageIndex">
-      1111
+      <div v-for="item in sidebarItems">
+        <h2>{{item.title}}</h2>
+        <ul>
+          <li v-for="children in item.children">
+            <router-link class="nav-link" :to="children.path">{{ children.title }}</router-link>
+          </li>
+        </ul>
+      </div>
     </div>
-    <Content v-else/>
+    <Content v-else />
 
     <footer class="page-edit">
-      <div
-        class="edit-link"
-        v-if="editLink"
-      >
-        <a
-          :href="editLink"
-          target="_blank"
-          rel="noopener noreferrer"
-        >{{ editLinkText }}</a>
-        <OutboundLink/>
+      <div class="edit-link" v-if="editLink">
+        <a :href="editLink" target="_blank" rel="noopener noreferrer">{{ editLinkText }}</a>
+        <OutboundLink />
       </div>
 
-      <div
-        class="last-updated"
-        v-if="lastUpdated"
-      >
-        <span class="prefix">{{ lastUpdatedText }}: </span>
+      <div class="last-updated" v-if="lastUpdated && !$page.frontmatter.pageIndex">
+        <span class="prefix">{{ lastUpdatedText }}:</span>
         <span class="time">{{ lastUpdated }}</span>
       </div>
     </footer>
 
     <div class="page-nav" v-if="prev || next">
       <p class="inner">
-        <span
-          v-if="prev"
-          class="prev"
-        >
+        <span v-if="prev" class="prev">
           ←
-          <router-link
-            v-if="prev"
-            class="prev"
-            :to="prev.path"
-          >
-            {{ prev.title || prev.path }}
-          </router-link>
+          <router-link v-if="prev" class="prev" :to="prev.path">{{ prev.title || prev.path }}</router-link>
         </span>
 
-        <span
-          v-if="next"
-          class="next"
-        >
-          <router-link
-            v-if="next"
-            :to="next.path"
-          >
-            {{ next.title || next.path }}
-          </router-link>
-          →
+        <span v-if="next" class="next">
+          <router-link v-if="next" :to="next.path">{{ next.title || next.path }}</router-link>→
         </span>
       </p>
     </div>
 
-    <div v-if="$site.themeConfig.Vssue" class="vssue-class">
-      <VssueComponent
-          :title="$page.title"
-          :options="options"
-      />
+    <div v-if="$site.themeConfig.Vssue && !$page.frontmatter.pageIndex" class="vssue-class">
+      <VssueComponent :title="$page.title" :options="options" />
     </div>
 
-    <slot name="bottom"/>
+    <slot name="bottom" />
   </main>
 </template>
 
 <script>
-import { resolvePage, outboundRE, endingSlashRE } from '../util'
-import {VssueComponent} from 'vssue'
-import GithubV3 from '@vssue/api-github-v3'
-import 'vssue/dist/vssue.css'
+import { resolvePage, outboundRE, endingSlashRE } from "../util";
+import { VssueComponent } from "vssue";
+import GithubV3 from "@vssue/api-github-v3";
+import "vssue/dist/vssue.css";
 
 export default {
-  components: {  VssueComponent },
-  props: ['sidebarItems'],
+  components: { VssueComponent },
+  props: ["sidebarItems"],
 
   computed: {
-    lastUpdated () {
-      return this.$page.lastUpdated
+    lastUpdated() {
+      return this.$page.lastUpdated;
     },
 
-    lastUpdatedText () {
-      if (typeof this.$themeLocaleConfig.lastUpdated === 'string') {
-        return this.$themeLocaleConfig.lastUpdated
+    lastUpdatedText() {
+      if (typeof this.$themeLocaleConfig.lastUpdated === "string") {
+        return this.$themeLocaleConfig.lastUpdated;
       }
-      if (typeof this.$site.themeConfig.lastUpdated === 'string') {
-        return this.$site.themeConfig.lastUpdated
+      if (typeof this.$site.themeConfig.lastUpdated === "string") {
+        return this.$site.themeConfig.lastUpdated;
       }
-      return 'Last Updated'
+      return "Last Updated";
     },
 
-    prev () {
-      const prev = this.$page.frontmatter.prev
+    prev() {
+      const prev = this.$page.frontmatter.prev;
       if (prev === false) {
-        return
+        return;
       } else if (prev) {
-        return resolvePage(this.$site.pages, prev, this.$route.path)
+        return resolvePage(this.$site.pages, prev, this.$route.path);
       } else {
-        return resolvePrev(this.$page, this.sidebarItems)
+        return resolvePrev(this.$page, this.sidebarItems);
       }
     },
 
-    next () {
-      const next = this.$page.frontmatter.next
+    next() {
+      const next = this.$page.frontmatter.next;
       if (next === false) {
-        return
+        return;
       } else if (next) {
-        return resolvePage(this.$site.pages, next, this.$route.path)
+        return resolvePage(this.$site.pages, next, this.$route.path);
       } else {
-        return resolveNext(this.$page, this.sidebarItems)
+        return resolveNext(this.$page, this.sidebarItems);
       }
     },
 
-    editLink () {
+    editLink() {
       if (this.$page.frontmatter.editLink === false) {
-        return
+        return;
       }
       const {
         repo,
         editLinks,
-        docsDir = '',
-        docsBranch = 'master',
+        docsDir = "",
+        docsBranch = "master",
         docsRepo = repo
-      } = this.$site.themeConfig
+      } = this.$site.themeConfig;
 
       if (docsRepo && editLinks && this.$page.relativePath) {
-        return this.createEditLink(repo, docsRepo, docsDir, docsBranch, this.$page.relativePath)
+        return this.createEditLink(
+          repo,
+          docsRepo,
+          docsDir,
+          docsBranch,
+          this.$page.relativePath
+        );
       }
     },
 
-    editLinkText () {
+    editLinkText() {
       return (
-        this.$themeLocaleConfig.editLinkText
-        || this.$site.themeConfig.editLinkText
-        || `Edit this page`
-      )
+        this.$themeLocaleConfig.editLinkText ||
+        this.$site.themeConfig.editLinkText ||
+        `Edit this page`
+      );
     },
 
     options() {
@@ -151,7 +133,7 @@ export default {
       }
       let gitalkConf = this.$site.themeConfig.gitalk[_env];
       let labels = [];
-      labels.push(this.$page.path)
+      labels.push(this.$page.path);
       gitalkConf.labels = labels;
       gitalkConf.api = GithubV3;
       return gitalkConf;
@@ -159,116 +141,137 @@ export default {
   },
 
   methods: {
-    createEditLink (repo, docsRepo, docsDir, docsBranch, path) {
-      const bitbucket = /bitbucket.org/
+    createEditLink(repo, docsRepo, docsDir, docsBranch, path) {
+      const bitbucket = /bitbucket.org/;
       if (bitbucket.test(repo)) {
-        const base = outboundRE.test(docsRepo)
-          ? docsRepo
-          : repo
+        const base = outboundRE.test(docsRepo) ? docsRepo : repo;
         return (
-          base.replace(endingSlashRE, '')
-           + `/src`
-           + `/${docsBranch}/`
-           + (docsDir ? docsDir.replace(endingSlashRE, '') + '/' : '')
-           + path
-           + `?mode=edit&spa=0&at=${docsBranch}&fileviewer=file-view-default`
-        )
+          base.replace(endingSlashRE, "") +
+          `/src` +
+          `/${docsBranch}/` +
+          (docsDir ? docsDir.replace(endingSlashRE, "") + "/" : "") +
+          path +
+          `?mode=edit&spa=0&at=${docsBranch}&fileviewer=file-view-default`
+        );
       }
 
       const base = outboundRE.test(docsRepo)
         ? docsRepo
-        : `https://github.com/${docsRepo}`
+        : `https://github.com/${docsRepo}`;
       return (
-        base.replace(endingSlashRE, '')
-        + `/edit`
-        + `/${docsBranch}/`
-        + (docsDir ? docsDir.replace(endingSlashRE, '') + '/' : '')
-        + path
-      )
+        base.replace(endingSlashRE, "") +
+        `/edit` +
+        `/${docsBranch}/` +
+        (docsDir ? docsDir.replace(endingSlashRE, "") + "/" : "") +
+        path
+      );
     }
+  },
+  mounted() {
+    console.log(this.sidebarItems);
   }
+};
+
+function resolvePrev(page, items) {
+  return find(page, items, -1);
 }
 
-function resolvePrev (page, items) {
-  return find(page, items, -1)
+function resolveNext(page, items) {
+  return find(page, items, 1);
 }
 
-function resolveNext (page, items) {
-  return find(page, items, 1)
-}
-
-function find (page, items, offset) {
-  const res = []
-  flatten(items, res)
+function find(page, items, offset) {
+  const res = [];
+  flatten(items, res);
   for (let i = 0; i < res.length; i++) {
-    const cur = res[i]
-    if (cur.type === 'page' && cur.path === decodeURIComponent(page.path)) {
-      return res[i + offset]
+    const cur = res[i];
+    if (cur.type === "page" && cur.path === decodeURIComponent(page.path)) {
+      return res[i + offset];
     }
   }
 }
 
-function flatten (items, res) {
+function flatten(items, res) {
   for (let i = 0, l = items.length; i < l; i++) {
-    if (items[i].type === 'group') {
-      flatten(items[i].children || [], res)
+    if (items[i].type === "group") {
+      flatten(items[i].children || [], res);
     } else {
-      res.push(items[i])
+      res.push(items[i]);
     }
   }
 }
-
 </script>
 
 <style lang="stylus">
-@require '../styles/wrapper.styl'
-
+@require '../styles/wrapper.styl';
 .page
-  display block
+    padding-bottom: 2rem;
+    display: block;
+.page-edit {
+  @extend $wrapper;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  overflow: auto;
 
-.page-edit
-  @extend $wrapper
-  padding-top 1rem
-  padding-bottom 1rem
-  overflow auto
-  .edit-link
-    display inline-block
-    a
-      color lighten($textColor, 25%)
-      margin-right 0.25rem
-  .last-updated
-    float right
-    font-size 0.9em
-    .prefix
-      font-weight 500
-      color lighten($textColor, 25%)
-    .time
-      font-weight 400
-      color #aaa
+  .edit-link {
+    display: inline-block;
 
-.page-nav
-  @extend $wrapper
-  padding-top 1rem
-  padding-bottom 0
-  .inner
-    min-height 2rem
-    margin-top 0
-    border-top 1px solid $borderColor
-    padding-top 1rem
-    overflow auto // clear float
-  .next
-    float right
-.vssue-class
-  max-width $contentWidth
-  margin 0 auto
+    a {
+      color: lighten($textColor, 25%);
+      margin-right: 0.25rem;
+    }
+  }
 
-@media (max-width: $MQMobile)
-  .page-edit
-    .edit-link
-      margin-bottom .5rem
-    .last-updated
-      font-size .8em
-      float none
-      text-align left
+  .last-updated {
+    float: right;
+    font-size: 0.9em;
 
+    .prefix {
+      font-weight: 500;
+      color: lighten($textColor, 25%);
+    }
+
+    .time {
+      font-weight: 400;
+      color: #aaa;
+    }
+  }
+}
+
+.page-nav {
+  @extend $wrapper;
+  padding-top: 1rem;
+  padding-bottom: 0;
+
+  .inner {
+    min-height: 2rem;
+    margin-top: 0;
+    border-top: 1px solid $borderColor;
+    padding-top: 1rem;
+    overflow: auto; // clear float
+  }
+
+  .next {
+    float: right;
+  }
+}
+
+.vssue-class {
+  max-width: $contentWidth;
+  margin: 0 auto;
+}
+
+@media (max-width: $MQMobile) {
+  .page-edit {
+    .edit-link {
+      margin-bottom: 0.5rem;
+    }
+
+    .last-updated {
+      font-size: 0.8em;
+      float: none;
+      text-align: left;
+    }
+  }
+}
 </style>

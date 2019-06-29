@@ -7,7 +7,6 @@ tags:
     - spring
     - spring-cloud
 keywords: spring cloud,spring-cloud
-sidebar: auto
 ---
 ## 父pom配置
 ~~~ xml

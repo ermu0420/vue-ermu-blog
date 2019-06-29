@@ -1,5 +1,4 @@
 ---
-sidebar: auto
 title: Docker在项目中应用之docker-maven-plugin
 category: docker
 status: push

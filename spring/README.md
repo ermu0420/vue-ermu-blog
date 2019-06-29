@@ -1,5 +1,5 @@
 ---
 category: spring
-itemIndex: true
+pageIndex: true
 title: Spring 系列文章
 ---

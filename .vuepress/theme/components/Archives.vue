@@ -35,7 +35,7 @@
     computed: {},
     methods: {
       formatDate(date) {
-        return (new Date(date).getMonth() + 1) + "-" + new Date(date).getDate()
+        return date.substring(5,10)
       },
       groupPosts() {
         this.$site.pages.filter(value => {
