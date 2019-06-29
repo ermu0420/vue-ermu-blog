@@ -66,7 +66,6 @@
         max-width $contentWidth
         padding 2rem
         margin 0px auto
-        margin-bottom $footerHeight
     .posts-list
         list-style-type none
         margin 20px 0 20px 120px

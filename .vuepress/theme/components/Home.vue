@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <main class="home">
     <div class="home-head">
       <div class="home-head-content">
         <div class="home-head-content-title">{{ $page.frontmatter.title || $site.themeConfig.home.title }}</div>
@@ -35,7 +35,7 @@
     </div>
 
     <Footer v-if="$site.themeConfig.footer" />
-  </div>
+  </main>
 </template>
 
 <script>

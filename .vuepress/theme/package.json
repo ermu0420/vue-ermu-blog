@@ -1,32 +1,45 @@
 {
-  "name": "vuepress-theme-ermu",
-  "version": "1.0.0",
-  "description": "vuepress博客主题",
-  "private": false,
+  "name": "@vuepress/theme-default",
+  "version": "1.0.2",
+  "description": "Default theme for VuePress",
   "main": "index.js",
-  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ermu0420/vuepress-theme-ermu.git"
+    "url": "git+https://github.com/vuejs/vuepress.git",
+    "directory": "packages/@vuepress/theme-default"
   },
   "keywords": [
+    "documentation",
+    "vue",
     "vuepress",
-    "theme",
-    "blog"
+    "generator"
   ],
-  "author": "ermu <xsl0420@126.com>",
+  "author": "Evan You",
+  "maintainers": [
+    {
+      "name": "ULIVZ",
+      "email": "chl814@foxmail.com"
+    }
+  ],
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ermu0420/vuepress-theme-ermu/issues"
+    "url": "https://github.com/vuejs/vuepress/issues"
   },
-  "homepage": "https://github.com/ermu0420/vuepress-theme-ermu#readme",
+  "homepage": "https://github.com/vuejs/vuepress/packages/@vuepress/theme-default#readme",
   "dependencies": {
     "@vssue/api-github-v3": "^0.9.0",
     "element-ui": "^2.5.0",
     "font-awesome": "4.7.0",
-    "vssue": "^0.9.1"
+    "@vuepress/plugin-active-header-links": "^1.0.2",
+    "@vuepress/plugin-nprogress": "^1.0.2",
+    "@vuepress/plugin-search": "^1.0.2",
+    "docsearch.js": "^2.5.2",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "vuepress-plugin-container": "^2.0.0"
   },
-  "devDependencies": {
-    "@vuepress/plugin-back-to-top": "^1.0.0-rc.1",
-    "vuepress": "1.0.2"
-  }
+  "gitHead": "cdd684339b89eb43786151dc14e390415b3aa36c"
 }

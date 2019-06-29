@@ -1,6 +1,6 @@
 <template>
   <main class="page">
-    <slot name="top" />
+    <slot name="top"/>
 
     <div v-if="$page.frontmatter.pageIndex">
       <div v-for="item in sidebarItems">
@@ -12,7 +12,7 @@
         </ul>
       </div>
     </div>
-    <Content v-else />
+    <Content v-else class="theme-default-content" />
 
     <footer class="page-edit">
       <div class="edit-link" v-if="editLink">
@@ -28,13 +28,31 @@
 
     <div class="page-nav" v-if="prev || next">
       <p class="inner">
-        <span v-if="prev" class="prev">
+        <span
+          v-if="prev"
+          class="prev"
+        >
           ←
-          <router-link v-if="prev" class="prev" :to="prev.path">{{ prev.title || prev.path }}</router-link>
+          <router-link
+            v-if="prev"
+            class="prev"
+            :to="prev.path"
+          >
+            {{ prev.title || prev.path }}
+          </router-link>
         </span>
 
-        <span v-if="next" class="next">
-          <router-link v-if="next" :to="next.path">{{ next.title || next.path }}</router-link>→
+        <span
+          v-if="next"
+          class="next"
+        >
+          <router-link
+            v-if="next"
+            :to="next.path"
+          >
+            {{ next.title || next.path }}
+          </router-link>
+          →
         </span>
       </p>
     </div>
@@ -43,7 +61,7 @@
       <VssueComponent :title="$page.title" :options="options" />
     </div>
 
-    <slot name="bottom" />
+    <slot name="bottom"/>
   </main>
 </template>
 
@@ -141,137 +159,114 @@ export default {
   },
 
   methods: {
-    createEditLink(repo, docsRepo, docsDir, docsBranch, path) {
-      const bitbucket = /bitbucket.org/;
+    createEditLink (repo, docsRepo, docsDir, docsBranch, path) {
+      const bitbucket = /bitbucket.org/
       if (bitbucket.test(repo)) {
-        const base = outboundRE.test(docsRepo) ? docsRepo : repo;
+        const base = outboundRE.test(docsRepo)
+          ? docsRepo
+          : repo
         return (
-          base.replace(endingSlashRE, "") +
-          `/src` +
-          `/${docsBranch}/` +
-          (docsDir ? docsDir.replace(endingSlashRE, "") + "/" : "") +
-          path +
-          `?mode=edit&spa=0&at=${docsBranch}&fileviewer=file-view-default`
-        );
+          base.replace(endingSlashRE, '')
+           + `/src`
+           + `/${docsBranch}/`
+           + (docsDir ? docsDir.replace(endingSlashRE, '') + '/' : '')
+           + path
+           + `?mode=edit&spa=0&at=${docsBranch}&fileviewer=file-view-default`
+        )
       }
 
       const base = outboundRE.test(docsRepo)
         ? docsRepo
-        : `https://github.com/${docsRepo}`;
+        : `https://github.com/${docsRepo}`
       return (
-        base.replace(endingSlashRE, "") +
-        `/edit` +
-        `/${docsBranch}/` +
-        (docsDir ? docsDir.replace(endingSlashRE, "") + "/" : "") +
-        path
-      );
+        base.replace(endingSlashRE, '')
+        + `/edit`
+        + `/${docsBranch}/`
+        + (docsDir ? docsDir.replace(endingSlashRE, '') + '/' : '')
+        + path
+      )
     }
-  },
-  mounted() {
-    console.log(this.sidebarItems);
   }
-};
-
-function resolvePrev(page, items) {
-  return find(page, items, -1);
 }
 
-function resolveNext(page, items) {
-  return find(page, items, 1);
+function resolvePrev (page, items) {
+  return find(page, items, -1)
 }
 
-function find(page, items, offset) {
-  const res = [];
-  flatten(items, res);
+function resolveNext (page, items) {
+  return find(page, items, 1)
+}
+
+function find (page, items, offset) {
+  const res = []
+  flatten(items, res)
   for (let i = 0; i < res.length; i++) {
-    const cur = res[i];
-    if (cur.type === "page" && cur.path === decodeURIComponent(page.path)) {
-      return res[i + offset];
+    const cur = res[i]
+    if (cur.type === 'page' && cur.path === decodeURIComponent(page.path)) {
+      return res[i + offset]
     }
   }
 }
 
-function flatten(items, res) {
+function flatten (items, res) {
   for (let i = 0, l = items.length; i < l; i++) {
-    if (items[i].type === "group") {
-      flatten(items[i].children || [], res);
+    if (items[i].type === 'group') {
+      flatten(items[i].children || [], res)
     } else {
-      res.push(items[i]);
+      res.push(items[i])
     }
   }
 }
+
 </script>
 
 <style lang="stylus">
-@require '../styles/wrapper.styl';
+@require '../styles/wrapper.styl'
+
 .page
-    padding-bottom: 2rem;
-    display: block;
-.page-edit {
-  @extend $wrapper;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  overflow: auto;
+  padding-bottom 2rem
+  display block
 
-  .edit-link {
-    display: inline-block;
+.page-edit
+  @extend $wrapper
+  padding-top 1rem
+  padding-bottom 1rem
+  overflow auto
+  .edit-link
+    display inline-block
+    a
+      color lighten($textColor, 25%)
+      margin-right 0.25rem
+  .last-updated
+    float right
+    font-size 0.9em
+    .prefix
+      font-weight 500
+      color lighten($textColor, 25%)
+    .time
+      font-weight 400
+      color #aaa
 
-    a {
-      color: lighten($textColor, 25%);
-      margin-right: 0.25rem;
-    }
-  }
+.page-nav
+  @extend $wrapper
+  padding-top 1rem
+  padding-bottom 0
+  .inner
+    min-height 2rem
+    margin-top 0
+    border-top 1px solid $borderColor
+    padding-top 1rem
+    overflow auto // clear float
+  .next
+    float right
 
-  .last-updated {
-    float: right;
-    font-size: 0.9em;
+@media (max-width: $MQMobile)
+  .page-edit
+    .edit-link
+      margin-bottom .5rem
+    .last-updated
+      font-size .8em
+      float none
+      text-align left
 
-    .prefix {
-      font-weight: 500;
-      color: lighten($textColor, 25%);
-    }
-
-    .time {
-      font-weight: 400;
-      color: #aaa;
-    }
-  }
-}
-
-.page-nav {
-  @extend $wrapper;
-  padding-top: 1rem;
-  padding-bottom: 0;
-
-  .inner {
-    min-height: 2rem;
-    margin-top: 0;
-    border-top: 1px solid $borderColor;
-    padding-top: 1rem;
-    overflow: auto; // clear float
-  }
-
-  .next {
-    float: right;
-  }
-}
-
-.vssue-class {
-  max-width: $contentWidth;
-  margin: 0 auto;
-}
-
-@media (max-width: $MQMobile) {
-  .page-edit {
-    .edit-link {
-      margin-bottom: 0.5rem;
-    }
-
-    .last-updated {
-      font-size: 0.8em;
-      float: none;
-      text-align: left;
-    }
-  }
-}
 </style>

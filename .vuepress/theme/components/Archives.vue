@@ -67,7 +67,6 @@
   @import '../styles/style.styl'
   $fontColor = #fff
   .article-home
-    margin-bottom $footerHeight
     padding-bottom 10px
 
   .item-head
